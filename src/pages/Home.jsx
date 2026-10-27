@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import CardMenu from "../components/CardMenu";
+import CardMenu from "../components/Cardmenu";
 import Footer from "../components/Footer";
 import calculate from "./../assets/calculate.png";
 import bmi from "./../assets/bmi.png";
@@ -50,7 +50,7 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* ส่วนแสดง Footer */}
+        {/* ส่วนแสดง Footer นะจะก */}
         <Footer />
       </div>
     </>
