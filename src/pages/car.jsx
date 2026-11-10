@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import car from "./../assets/car.png";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function Car() {
   const [name, setName] = useState("");
@@ -14,7 +15,23 @@ export default function Car() {
   const handleCalculate = (e) => {
     e.preventDefault();
 
-    if (!price || !interest) return;
+    if (price === "") {
+      Swal.fire({
+        title: "คำเตือน",
+        text: "กรุณาป้อนราคารถ",
+        icon: "warning",
+      });
+      return;
+    }
+
+    if (interest === "") {
+      Swal.fire({
+        title: "คำเตือน",
+        text: "กรุณาป้อนดอกเบี้ยต่อปี",
+        icon: "warning",
+      });
+      return;
+    }
 
     const carPrice = parseFloat(price);
     const interestRate = parseFloat(interest) / 100;
@@ -34,7 +51,8 @@ export default function Car() {
     );
   };
 
-  const handleReset = () => {
+  const handleReset = (e) => {
+    e.preventDefault();
     setName("");
     setPrice("");
     setInterest("");

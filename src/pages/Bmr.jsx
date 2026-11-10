@@ -7,12 +7,56 @@ export default function Bmi() {
   const [height, setHeight] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("male");
+  const [bmrValue, setBmrValue] = useState("0.00");
 
   const handleReset = () => {
     setWeight("");
     setHeight("");
     setAge("");
     setGender("male");
+    setBmrValue("0.00");
+  };
+
+  const handleCalculate = (e) => {
+    e.preventDefault();
+
+    if (weight === "") {
+      title: "คำเตือน";
+      text: "กรุณาป้อนน้ำหนัก";
+      icon: "warning";
+      alert("กรุณาป้อนน้ำหนัก");
+      return;
+    }
+
+    if (height === "") {
+      title: "คำเตือน";
+      text: "กรุณาป้อนส่วนสูง";
+      icon: "warning";
+      alert("กรุณาป้อนส่วนสูง");
+      return;
+    }
+
+    if (age === "") {
+      title: "คำเตือน";
+      text: "กรุณาป้อนอายุ";
+      icon: "warning";
+      alert("กรุณาป้อนอายุ");
+      return;
+    }
+
+    // คำนวณ BMR ตามสูตร
+    let w = Number(weight);
+    let h = Number(height);
+    let a = Number(age);
+
+    let bmr;
+    if (gender === "male") {
+      bmrResult = 66 + (13.7 * w) + (5 * h) - (6.8 * a);
+    } else {
+      bmrResult = 665 + (9.6 * w) + (1.8 * h) - (4.7 * a);
+    }
+
+    setBmrValue(bmrResult.toFixed(2));
   };
 
   return (
@@ -122,8 +166,8 @@ export default function Bmi() {
         {/* ผลลัพธ์ (ยังไม่คำนวณ) */}
         <div className="mt-6 text-center">
           <p className="text-gray-600 font-kanit">
-            ค่า BMR ที่คำนวณได้:{" "}
-            <span className="text-xl font-bold text-blue-800">0.00</span>
+            ค่า BMR ที่คำนวณได้:
+            <span className="text-xl font-bold text-blue-800">{bmrValue}</span>
           </p>
         </div>
 
